@@ -2,6 +2,8 @@ package org.example.app.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
+import org.junit.runner.RunWith;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -25,28 +27,28 @@ public class CreateFileTest {
         } catch (RuntimeException e) {
             test = e.getMessage();
         }
-        Assertions.assertFalse(test.equals("Абсолютный путь к корневой папке не указан."));
+        Assertions.assertTrue(test.equals("Абсолютный путь к корневой папке не указан."));
 
         try {
             new CreateFile(null);
         } catch (RuntimeException e) {
             test = e.getMessage();
         }
-        Assertions.assertFalse(test.equals("Абсолютный путь к корневой папке не указан."));
+        Assertions.assertTrue(test.equals("Абсолютный путь к корневой папке не указан."));
 
         try {
             new CreateFile("// dfbdf");
         } catch (RuntimeException e) {
             test = e.getMessage();
         }
-        Assertions.assertFalse(test.equals("Абсолютный путь введен не корректно."));
+        Assertions.assertTrue(test.equals("Абсолютный путь введен не корректно."));
 
         try {
             new CreateFile("dfbdf");
         } catch (RuntimeException e) {
             test = e.getMessage();
         }
-        Assertions.assertFalse(test.equals("Указанный путь не является абсолютным."));
+        Assertions.assertTrue(test.equals("Указанный путь не является абсолютным."));
     }
 
     @Test
